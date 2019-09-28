@@ -26,7 +26,7 @@ class HarrisBenedictFormula :
 
     private fun calculateFemaleBmr(person: Person): Double {
         return when {
-            person.weight.volume == WeightVolume.Pound -> 655.1 + calculateBmr(
+            person.weight.volume == WeightVolume.Kilogram -> 655.1 + calculateBmr(
                 person, 9.563, 1.85, 4.676
             )
             else -> 655.1 + calculateBmr(
