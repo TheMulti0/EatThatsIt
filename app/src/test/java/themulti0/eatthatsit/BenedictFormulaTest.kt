@@ -5,6 +5,9 @@ import org.junit.Test
 import org.junit.Assert.*
 import themulti0.eatthatsit.services.benedictFormula.BenedictFormulaService
 import themulti0.eatthatsit.services.benedictFormula.bmr.HarrisBenedictFormula
+import themulti0.eatthatsit.services.benedictFormula.bmr.IBenedictBmrFormula
+import themulti0.eatthatsit.services.benedictFormula.bmr.MiffinStJeorBenedictFormula
+import themulti0.eatthatsit.services.benedictFormula.bmr.RozaShizgalBenedictFormula
 import themulti0.eatthatsit.services.benedictFormula.models.*
 import kotlin.math.roundToInt
 
@@ -42,63 +45,68 @@ class BenedictFormulaTest {
 
     @Test
     fun harrisBenedict() {
-        val maleCalories = 3295
-        harrisBenedict_male_metric(maleCalories)
-        harrisBenedict_male_imperial(maleCalories)
-
-        val femaleCalories = 2444
-        harrisBenedict_female_metric(femaleCalories)
-        harrisBenedict_female_imperial(femaleCalories + 2) // Not exactly accurate because of conversion between metric to imperial units
+        validateAllPossibilites(
+            3295,
+            3281,
+            2440,
+            2447,
+            HarrisBenedictFormula())
     }
 
-    fun harrisBenedict_male_metric(expectedCalories: Int) {
-        validateFormula(
-            expectedCalories,
-            HarrisBenedictFormula(),
-            metricMale,
-            "Harris-Benedict male metric"
+    @Test
+    fun rozaShizgal() {
+        validateAllPossibilites(
+            3267,
+            3260,
+            2434,
+            2430,
+            RozaShizgalBenedictFormula()
         )
     }
 
-    fun harrisBenedict_male_imperial(expectedCalories: Int) {
-        validateFormula(
-            expectedCalories,
-            HarrisBenedictFormula(),
-            metricMale,
-            "Harris-Benedict male imperial"
+    @Test
+    fun miffinStJr() {
+        validateAllPossibilites(
+            3141,
+            3140,
+            2354,
+            2350,
+            MiffinStJeorBenedictFormula()
         )
     }
 
-    fun harrisBenedict_female_metric(expectedCalories: Int) {
-        validateFormula(
-            expectedCalories,
-            HarrisBenedictFormula(),
-            metricFemale,
-            "Harris-Benedict female metric"
-        )
-    }
+    private fun validateAllPossibilites(
+        maleMetricExpectedCalories: Int,
+        maleImperialExpectedCalories: Int,
+        femaleMetricExpectedCalories: Int,
+        femaleImperialExpectedCalories: Int,
+        formula: IBenedictBmrFormula
+    ) {
+        validateFormula(maleMetricExpectedCalories, formula, metricMale, "Male Metric")
+        validateFormula(maleImperialExpectedCalories, formula, imperialMale, "Male Imperial")
 
-    fun harrisBenedict_female_imperial(expectedCalories: Int) {
-        validateFormula(
-            expectedCalories,
-            HarrisBenedictFormula(),
-            imperialFemale,
-            "Harris-Benedict female imperial"
-        )
+        validateFormula(femaleMetricExpectedCalories, formula, metricFemale, "Female Metric")
+        validateFormula(femaleImperialExpectedCalories, formula, imperialFemale, "Female Imperial")
     }
 
     private fun validateFormula(
         expectedCalories: Int,
-        formula: HarrisBenedictFormula,
+        formula: IBenedictBmrFormula,
         person: Person,
         message: String
     ) {
         benedict = BenedictFormulaService(formula)
-
-        val calories: Int = benedict.calculate(person, pal).roundToInt()
+        val calories: Int = benedict.calculate(
+            person,
+            pal
+        ).roundToInt().floorFirstDigit()
         assertTrue(
-            "Calculated calorie amount for $message is wrong!",
-            calories == expectedCalories
+            "Calculated calorie amount for ${formula.javaClass.canonicalName}, $message is wrong!",
+            expectedCalories.floorFirstDigit() == calories.floorFirstDigit()
         )
     }
+
+    private fun Int.floorFirstDigit(): Int
+        = this / 10 * 10
+
 }
