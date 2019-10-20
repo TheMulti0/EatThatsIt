@@ -7,10 +7,34 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+<!-- Navigation Entries -->
+
+    <string name="menu_benedict">Benedict</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
     <string name="menu_settings">Settings</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+
+
+<!-- Benedict Fragment -->
+
+    <string name="benedict_weight">Weight</string>
+    <string name="benedict_weight_volume">kg</string>
+    <string name="benedict_height">Height</string>
+    <string name="benedict_height_volume">cm</string>
+    <string name="benedict_age">Age</string>
+    <string name="benedict_age_volume">years</string>
+    <string name="benedict_pal">PAL</string>
+    <string name="benedict_spinner_text">Formula</string>
+
+    <string-array name="benedict_formula_arrays">
+<!--        <item>Average of all the different equations</item>-->
+<!--        <item>Original Harris-Benedict equation published in 1918</item>-->
+<!--        <item>Equation revised by Roza and Shizgal in 1984</item>-->
+<!--        <item>Equation revised by Dr. Miffin and St.Jeor in 1990</item>-->
+
+            <item>Average of all</item>
+            <item>Harris-Benedict</item>
+            <item>Roza and Shizgal</item>
+            <item>Dr. Miffin and St.Jeor</item>
+
+    </string-array>
 </resources>

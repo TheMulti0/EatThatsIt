@@ -6,7 +6,7 @@
     <data>
         <variable
             name="vm"
-            type="themulti0.eatthatsit.ui.home.HomeViewModel" />
+            type="themulti0.eatthatsit.ui.home.BenedictViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +20,7 @@
             android:layout_marginStart="29dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="30dp"
-            android:text="Weight"
+            android:text="@string/benedict_weight"
             app:layout_constraintEnd_toStartOf="@+id/inputWeight"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginTop="28dp"
-            android:layout_marginEnd="33dp"
-            android:text="kg"
+            android:layout_marginEnd="18dp"
+            android:text="@string/benedict_weight_volume"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/inputWeight"
@@ -41,14 +41,13 @@
 
         <EditText
             android:id="@+id/inputWeight"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="106dp"
+            android:layout_marginStart="102dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="96dp"
-            android:autofillHints=""
+            android:layout_marginEnd="50dp"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +59,7 @@
             android:layout_marginStart="29dp"
             android:layout_marginTop="43dp"
             android:layout_marginEnd="30dp"
-            android:text="Height"
+            android:text="@string/benedict_height"
             app:layout_constraintEnd_toStartOf="@+id/inputHeight"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,8 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginTop="43dp"
-            android:layout_marginEnd="33dp"
-            android:text="cm"
+            android:layout_marginEnd="18dp"
+            android:text="@string/benedict_height_volume"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/inputHeight"
@@ -81,14 +80,13 @@
 
         <EditText
             android:id="@+id/inputHeight"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="106dp"
+            android:layout_marginStart="102dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="96dp"
-            android:autofillHints=""
+            android:layout_marginEnd="50dp"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputWeight" />
@@ -100,11 +98,11 @@
             android:layout_marginStart="29dp"
             android:layout_marginTop="43dp"
             android:layout_marginEnd="30dp"
-            android:text="Age"
+            android:text="@string/benedict_age"
             app:layout_constraintEnd_toStartOf="@+id/inputAge"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textCm" />
+            app:layout_constraintTop_toBottomOf="@+id/textHeight" />
 
         <TextView
             android:id="@+id/textYears"
@@ -112,8 +110,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginTop="43dp"
-            android:layout_marginEnd="33dp"
-            android:text="years"
+            android:layout_marginEnd="18dp"
+            android:text="@string/benedict_age_volume"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/inputAge"
@@ -121,17 +119,67 @@
 
         <EditText
             android:id="@+id/inputAge"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="106dp"
+            android:layout_marginStart="102dp"
             android:layout_marginTop="23dp"
-            android:layout_marginEnd="96dp"
-            android:autofillHints=""
+            android:layout_marginEnd="50dp"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputHeight" />
+
+        <TextView
+            android:id="@+id/textPal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/benedict_pal"
+            app:layout_constraintEnd_toStartOf="@+id/inputPal"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textAge" />
+
+        <EditText
+            android:id="@+id/inputPal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="102dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="50dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputAge" />
+
+        <TextView
+            android:id="@+id/textSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/benedict_spinner_text"
+            app:layout_constraintEnd_toStartOf="@+id/formula_spinner"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textPal" />
+
+        <Spinner
+            android:id="@+id/formula_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="102dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="50dp"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputPal" />
 
         <TextView
             android:id="@+id/viewResult"
@@ -151,12 +199,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="106dp"
-            android:layout_marginTop="111dp"
+            android:layout_marginTop="23dp"
             android:layout_marginEnd="96dp"
             android:text="Calculate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputAge" />
+            app:layout_constraintTop_toBottomOf="@+id/formula_spinner" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
