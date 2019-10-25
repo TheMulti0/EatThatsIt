@@ -7,13 +7,11 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.view.LayoutInflater
 
-
-
 class MultiArrayAppender(
     private val givenContext: Context,
-    private val resource: Int,
     shortList: Array<out String>,
-    private val longList: Array<out String> ) // Short list is the default
+    private val longList: Array<out String>,
+    private val resource: Int ) // Short list is the default
     : ArrayAdapter<String>(givenContext, resource, shortList) {
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {

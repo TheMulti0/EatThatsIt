@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.fragment_benedict.*
 import themulti0.eatthatsit.R
 import themulti0.eatthatsit.databinding.FragmentBenedictBinding
 import themulti0.eatthatsit.services.benedictFormula.BenedictFormulaService
@@ -23,45 +24,61 @@ class BenedictFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSel
     private lateinit var benedictViewModel: BenedictViewModel
     private var formulaType: BenedictFormulaType = BenedictFormulaType.Average
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        benedictViewModel = ViewModelProviders.of(this).get(BenedictViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_benedict, container, false)
-
-        var binding: FragmentBenedictBinding = FragmentBenedictBinding.bind(root)
-        binding.lifecycleOwner = this
-        binding.vm = benedictViewModel
-
-        bindViewToVm(R.id.inputWeight, root, benedictViewModel::inputWeight::set)
-        bindViewToVm(R.id.inputHeight, root, benedictViewModel::inputHeight::set)
-        bindViewToVm(R.id.inputAge, root, benedictViewModel::inputAgeInYears::set)
-        bindViewToVm(R.id.inputPal, root, benedictViewModel::inputPal::set)
-
-        root.findViewById<Button>(R.id.calculateButton).setOnClickListener(this)
-
-        val spinner: Spinner = root.findViewById(R.id.formula_spinner)
-        spinner.onItemSelectedListener = this
-
-        MultiArrayAppender(
-            root.context,
-            android.R.layout.select_dialog_item,
-            resources.getStringArray(R.array.short_benedict_formula_arrays),
-            resources.getStringArray(R.array.long_benedict_formula_arrays))
-        .also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.select_dialog_item)
-            spinner.adapter = adapter
-        }
-
-        return root
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_benedict, container, false)
     }
 
-    private fun bindViewToVm(id: Int, root: View, propertySetter: (Double) -> Unit) {
-        var inputView: TextView = root.findViewById(id)
-        inputView.doAfterTextChanged { text ->
+    override fun onViewCreated(view: View, savedInstanceBundle: Bundle?): Unit {
+        super.onViewCreated(view, savedInstanceBundle)
+
+        benedictViewModel = ViewModelProviders.of(this).get(BenedictViewModel::class.java)
+
+        val binding: FragmentBenedictBinding = FragmentBenedictBinding.bind(view)
+        binding.lifecycleOwner = this
+        binding.vm = benedictViewModel // XML side binding for viewResult
+
+        inputWeight?.bindToViewModel(benedictViewModel::inputWeight::set)
+        inputHeight?.bindToViewModel(benedictViewModel::inputHeight::set)
+        inputAge?.bindToViewModel(benedictViewModel::inputAgeInYears::set)
+        inputPal?.bindToViewModel(benedictViewModel::inputPal::set)
+
+        calculateButton?.setOnClickListener(this)
+
+        val context = view.context
+        gender_spinner?.bindToAdapter(
+            this,
+            ArrayAdapter.createFromResource(
+                context,
+                R.array.benedict_gender_array,
+                android.R.layout.select_dialog_item
+            )
+        )
+
+        formula_spinner?.bindToAdapter(
+            this,
+            MultiArrayAppender(
+                context,
+                resources.getStringArray(R.array.short_benedict_formula_array),
+                resources.getStringArray(R.array.long_benedict_formula_array),
+                android.R.layout.select_dialog_item
+            )
+        )
+    }
+
+    private fun <T : Any> Spinner.bindToAdapter(
+        itemSelectedListener: AdapterView.OnItemSelectedListener,
+        arrayAdapter: ArrayAdapter<T>
+    ) {
+        this.onItemSelectedListener = itemSelectedListener
+
+        arrayAdapter.also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.select_dialog_item)
+            this.adapter = adapter
+        }
+    }
+
+    private fun EditText.bindToViewModel(propertySetter: (Double) -> Unit): Unit {
+        this.doAfterTextChanged { text ->
             try {
                 propertySetter(text.toString().toDouble())
             } catch (e: NumberFormatException) {
@@ -70,12 +87,12 @@ class BenedictFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSel
     }
 
     override fun onClick(v: View?) {
-        var calories: Double = when (this.formulaType) {
+        val calories: Double = when (this.formulaType) {
 
             BenedictFormulaType.Average -> {
                 (calculateCalories(HarrisBenedictFormula()) +
-                        calculateCalories(RozaShizgalBenedictFormula()) +
-                        calculateCalories(MiffinStJeorBenedictFormula())) / 3
+                    calculateCalories(RozaShizgalBenedictFormula()) +
+                    calculateCalories(MiffinStJeorBenedictFormula())) / 3
             }
 
             BenedictFormulaType.HarrisBenedict -> calculateCalories(HarrisBenedictFormula())
@@ -104,6 +121,9 @@ class BenedictFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSel
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        this.formulaType = BenedictFormulaType.fromInt(position);
+        when (parent) {
+            gender_spinner -> this.benedictViewModel.inputGender = Gender.fromInt(position)
+            formula_spinner -> this.formulaType = BenedictFormulaType.fromInt(position)
+        }
     }
 }
