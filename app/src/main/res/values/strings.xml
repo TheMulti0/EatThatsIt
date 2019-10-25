@@ -25,16 +25,17 @@
     <string name="benedict_pal">PAL</string>
     <string name="benedict_spinner_text">Formula</string>
 
-    <string-array name="benedict_formula_arrays">
-<!--        <item>Average of all the different equations</item>-->
-<!--        <item>Original Harris-Benedict equation published in 1918</item>-->
-<!--        <item>Equation revised by Roza and Shizgal in 1984</item>-->
-<!--        <item>Equation revised by Dr. Miffin and St.Jeor in 1990</item>-->
-
+    <string-array name="short_benedict_formula_arrays">
             <item>Average of all</item>
             <item>Harris-Benedict</item>
             <item>Roza and Shizgal</item>
             <item>Dr. Miffin and St.Jeor</item>
+    </string-array>
 
+    <string-array name="long_benedict_formula_arrays">
+        <item>Average of all the different equations</item>
+        <item>Original Harris-Benedict equation published in 1918</item>
+        <item>Equation revised by Roza and Shizgal in 1984</item>
+        <item>Equation revised by Dr. Miffin and St.Jeor in 1990</item>
     </string-array>
 </resources>

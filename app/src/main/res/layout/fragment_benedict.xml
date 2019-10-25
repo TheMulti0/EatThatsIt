@@ -6,7 +6,7 @@
     <data>
         <variable
             name="vm"
-            type="themulti0.eatthatsit.ui.home.BenedictViewModel" />
+            type="themulti0.eatthatsit.ui.benedict.BenedictViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -164,6 +164,7 @@
             android:layout_marginTop="43dp"
             android:layout_marginEnd="30dp"
             android:text="@string/benedict_spinner_text"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/formula_spinner"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -177,6 +178,7 @@
             android:layout_marginTop="23dp"
             android:layout_marginEnd="50dp"
             android:spinnerMode="dialog"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputPal" />

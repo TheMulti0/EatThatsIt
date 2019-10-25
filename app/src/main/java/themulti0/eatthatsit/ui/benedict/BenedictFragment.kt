@@ -1,4 +1,4 @@
-package themulti0.eatthatsit.ui.home
+package themulti0.eatthatsit.ui.benedict
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +16,7 @@ import themulti0.eatthatsit.services.benedictFormula.bmr.IBenedictBmrFormula
 import themulti0.eatthatsit.services.benedictFormula.bmr.MiffinStJeorBenedictFormula
 import themulti0.eatthatsit.services.benedictFormula.bmr.RozaShizgalBenedictFormula
 import themulti0.eatthatsit.services.benedictFormula.models.*
+import themulti0.eatthatsit.ui.MultiArrayAppender
 
 class BenedictFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -44,11 +45,13 @@ class BenedictFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSel
 
         val spinner: Spinner = root.findViewById(R.id.formula_spinner)
         spinner.onItemSelectedListener = this
-        ArrayAdapter.createFromResource(
+
+        MultiArrayAppender(
             root.context,
-            R.array.benedict_formula_arrays,
-            android.R.layout.select_dialog_item
-        ).also { adapter ->
+            android.R.layout.select_dialog_item,
+            resources.getStringArray(R.array.short_benedict_formula_arrays),
+            resources.getStringArray(R.array.long_benedict_formula_arrays))
+        .also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.select_dialog_item)
             spinner.adapter = adapter
         }

@@ -1,4 +1,4 @@
-package themulti0.eatthatsit.ui.home
+package themulti0.eatthatsit.ui.benedict
 
 enum class BenedictFormulaType(val value: Int) {
     Average(0),

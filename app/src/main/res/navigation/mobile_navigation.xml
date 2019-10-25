@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_benedict"
-        android:name="themulti0.eatthatsit.ui.home.BenedictFragment"
+        android:name="themulti0.eatthatsit.ui.benedict.BenedictFragment"
         android:label="@string/menu_benedict"
         tools:layout="@layout/fragment_benedict" />
 

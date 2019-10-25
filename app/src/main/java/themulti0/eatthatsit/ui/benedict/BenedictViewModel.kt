@@ -1,7 +1,5 @@
-package themulti0.eatthatsit.ui.home
+package themulti0.eatthatsit.ui.benedict
 
-import androidx.databinding.ObservableField
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
