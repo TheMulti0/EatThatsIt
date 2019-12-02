@@ -11,5 +11,5 @@ class BenedictViewModel : ViewModel() {
     var inputAgeInYears: Double = 0.0
     var inputPal: Double = 0.0
 
-    var result: MutableLiveData<String> = MutableLiveData("hi me pipia")
+    var result: MutableLiveData<String> = MutableLiveData("Result is empty.")
 }

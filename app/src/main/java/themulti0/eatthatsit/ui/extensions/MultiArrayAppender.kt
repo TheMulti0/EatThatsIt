@@ -1,4 +1,4 @@
-package themulti0.eatthatsit.ui
+package themulti0.eatthatsit.ui.extensions
 
 import android.content.Context
 import android.view.View

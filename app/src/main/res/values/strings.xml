@@ -44,4 +44,8 @@
         <item>Equation revised by Roza and Shizgal in 1984</item>
         <item>Equation revised by Dr. Miffin and St.Jeor in 1990</item>
     </string-array>
+
+
+    <string name="numbercounter_minus">Minus button</string>
+    <string name="numbercounter_plus">Plus button</string>
 </resources>

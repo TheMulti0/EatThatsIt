@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_benedict">
+    app:startDestination="@+id/nav_gallery">
 
     <fragment
         android:id="@+id/nav_benedict"
         android:name="themulti0.eatthatsit.ui.benedict.BenedictFragment"
         android:label="@string/menu_benedict"
-        tools:layout="@layout/fragment_benedict" />
+        tools:layout="@layout/benedict_fragment" />
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="themulti0.eatthatsit.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/gallery_fragment" />
 
     <fragment
         android:id="@+id/nav_settings"
         android:name="themulti0.eatthatsit.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/settings_fragment" />
 
 </navigation>

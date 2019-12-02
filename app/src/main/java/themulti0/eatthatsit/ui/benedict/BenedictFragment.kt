@@ -4,20 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.core.widget.doAfterTextChanged
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.fragment_benedict.*
+import kotlinx.android.synthetic.main.benedict_fragment.*
 import themulti0.eatthatsit.R
-import themulti0.eatthatsit.databinding.FragmentBenedictBinding
+import themulti0.eatthatsit.databinding.BenedictFragmentBinding
 import themulti0.eatthatsit.services.benedictFormula.BenedictFormulaService
 import themulti0.eatthatsit.services.benedictFormula.bmr.HarrisBenedictFormula
 import themulti0.eatthatsit.services.benedictFormula.bmr.IBenedictBmrFormula
 import themulti0.eatthatsit.services.benedictFormula.bmr.MiffinStJeorBenedictFormula
 import themulti0.eatthatsit.services.benedictFormula.bmr.RozaShizgalBenedictFormula
 import themulti0.eatthatsit.services.benedictFormula.models.*
-import themulti0.eatthatsit.ui.MultiArrayAppender
+import themulti0.eatthatsit.ui.extensions.MultiArrayAppender
+import themulti0.eatthatsit.ui.extensions.bindToAdapter
+import themulti0.eatthatsit.ui.extensions.bindToViewModel
 
 class BenedictFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -25,7 +27,7 @@ class BenedictFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSel
     private var formulaType: BenedictFormulaType = BenedictFormulaType.Average
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_benedict, container, false)
+        return inflater.inflate(R.layout.benedict_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceBundle: Bundle?): Unit {
@@ -33,14 +35,14 @@ class BenedictFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSel
 
         benedictViewModel = ViewModelProviders.of(this).get(BenedictViewModel::class.java)
 
-        val binding: FragmentBenedictBinding = FragmentBenedictBinding.bind(view)
+        val binding = BenedictFragmentBinding.bind(view)
         binding.lifecycleOwner = this
         binding.vm = benedictViewModel // XML side binding for viewResult
 
-        inputWeight?.bindToViewModel(benedictViewModel::inputWeight::set)
-        inputHeight?.bindToViewModel(benedictViewModel::inputHeight::set)
-        inputAge?.bindToViewModel(benedictViewModel::inputAgeInYears::set)
-        inputPal?.bindToViewModel(benedictViewModel::inputPal::set)
+        inputWeight?.bindToViewModel { it -> benedictViewModel.inputWeight = it.toDouble() }
+        inputHeight?.bindToViewModel { it -> benedictViewModel.inputHeight = it.toDouble() }
+        inputAge?.bindToViewModel { it -> benedictViewModel.inputAgeInYears = it.toDouble() }
+        inputPal?.bindToViewModel { it -> benedictViewModel.inputPal = it.toDouble() }
 
         calculateButton?.setOnClickListener(this)
 
@@ -63,27 +65,6 @@ class BenedictFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSel
                 android.R.layout.select_dialog_item
             )
         )
-    }
-
-    private fun <T : Any> Spinner.bindToAdapter(
-        itemSelectedListener: AdapterView.OnItemSelectedListener,
-        arrayAdapter: ArrayAdapter<T>
-    ) {
-        this.onItemSelectedListener = itemSelectedListener
-
-        arrayAdapter.also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.select_dialog_item)
-            this.adapter = adapter
-        }
-    }
-
-    private fun EditText.bindToViewModel(propertySetter: (Double) -> Unit): Unit {
-        this.doAfterTextChanged { text ->
-            try {
-                propertySetter(text.toString().toDouble())
-            } catch (e: NumberFormatException) {
-            }
-        }
     }
 
     override fun onClick(v: View?) {
