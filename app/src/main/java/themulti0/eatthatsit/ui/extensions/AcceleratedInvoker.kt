@@ -1,4 +1,4 @@
-package themulti0.eatthatsit.ui.numberCounter
+package themulti0.eatthatsit.ui.extensions
 
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService

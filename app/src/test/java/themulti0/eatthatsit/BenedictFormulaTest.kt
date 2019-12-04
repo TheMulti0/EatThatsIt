@@ -3,12 +3,12 @@ package themulti0.eatthatsit
 import org.junit.Test
 
 import org.junit.Assert.*
-import themulti0.eatthatsit.services.benedictFormula.BenedictFormulaService
-import themulti0.eatthatsit.services.benedictFormula.bmr.HarrisBenedictFormula
-import themulti0.eatthatsit.services.benedictFormula.bmr.IBenedictBmrFormula
-import themulti0.eatthatsit.services.benedictFormula.bmr.MiffinStJeorBenedictFormula
-import themulti0.eatthatsit.services.benedictFormula.bmr.RozaShizgalBenedictFormula
-import themulti0.eatthatsit.services.benedictFormula.models.*
+import themulti0.eatthatsit.services.benedictformula.BenedictFormulaService
+import themulti0.eatthatsit.services.benedictformula.bmr.HarrisBenedictFormula
+import themulti0.eatthatsit.services.benedictformula.bmr.IBenedictBmrFormula
+import themulti0.eatthatsit.services.benedictformula.bmr.MiffinStJeorBenedictFormula
+import themulti0.eatthatsit.services.benedictformula.bmr.RozaShizgalBenedictFormula
+import themulti0.eatthatsit.services.benedictformula.models.*
 import kotlin.math.roundToInt
 
 class BenedictFormulaTest {

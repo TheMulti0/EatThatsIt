@@ -1,7 +1,7 @@
-package themulti0.eatthatsit.services.benedictFormula.bmr
+package themulti0.eatthatsit.services.benedictformula.bmr
 
-import themulti0.eatthatsit.services.benedictFormula.models.Gender
-import themulti0.eatthatsit.services.benedictFormula.models.Person
+import themulti0.eatthatsit.services.benedictformula.models.Gender
+import themulti0.eatthatsit.services.benedictformula.models.Person
 
 class MiffinStJeorBenedictFormula :
     IBenedictBmrFormula {

@@ -1,4 +1,4 @@
-package themulti0.eatthatsit.services.benedictFormula.models
+package themulti0.eatthatsit.services.benedictformula.models
 
 enum class WeightVolume(var valueOfOneInKg: Double) {
     Kilogram(1.0),

@@ -1,4 +1,4 @@
-package themulti0.eatthatsit.services.benedictFormula.models
+package themulti0.eatthatsit.services.benedictformula.models
 
 enum class LengthVolume(var valueOfOneInCm: Double) {
     Centimeter(1.0),

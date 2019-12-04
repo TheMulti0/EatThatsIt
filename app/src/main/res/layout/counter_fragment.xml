@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="themulti0.eatthatsit.ui.numberCounter.CounterViewModel" />
+            type="themulti0.eatthatsit.ui.counter.CounterViewModel" />
 
     </data>
 

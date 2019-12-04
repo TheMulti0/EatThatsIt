@@ -1,4 +1,4 @@
-package themulti0.eatthatsit.services.benedictFormula.models
+package themulti0.eatthatsit.services.benedictformula.models
 
 enum class Gender(val value: Int) {
     Male(0),

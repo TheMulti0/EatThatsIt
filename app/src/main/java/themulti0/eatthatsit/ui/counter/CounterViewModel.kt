@@ -1,20 +1,23 @@
-package themulti0.eatthatsit.ui.numberCounter
+package themulti0.eatthatsit.ui.counter
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import themulti0.eatthatsit.database.NutritionDao
 import themulti0.eatthatsit.database.NutritionEntity
+import themulti0.eatthatsit.ui.extensions.AcceleratedInvoker
 import java.util.concurrent.TimeUnit
 
 class CounterViewModel(private val nutritionDao: NutritionDao) : BaseObservable() {
 
-    private val invoker: AcceleratedInvoker = AcceleratedInvoker(
-        TimeUnit.MILLISECONDS,
-        this::incrementDouble,
-        250,
-        30,
-        75)
+    private val invoker: AcceleratedInvoker =
+        AcceleratedInvoker(
+            TimeUnit.MILLISECONDS,
+            this::incrementDouble,
+            250,
+            30,
+            75
+        )
 
     private lateinit var nutritionEntity: NutritionEntity
 

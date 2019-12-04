@@ -1,4 +1,4 @@
-package themulti0.eatthatsit.ui.numberCounter
+package themulti0.eatthatsit.ui.counter
 
 import android.content.Context
 import android.os.Bundle

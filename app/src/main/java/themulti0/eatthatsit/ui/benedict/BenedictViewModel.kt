@@ -2,7 +2,7 @@ package themulti0.eatthatsit.ui.benedict
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import themulti0.eatthatsit.services.benedictFormula.models.Gender
+import themulti0.eatthatsit.services.benedictformula.models.Gender
 
 class BenedictViewModel : ViewModel() {
     var inputGender: Gender = Gender.Male
