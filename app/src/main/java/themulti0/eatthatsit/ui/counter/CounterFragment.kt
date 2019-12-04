@@ -1,12 +1,15 @@
 package themulti0.eatthatsit.ui.counter
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.room.Room
 import kotlinx.android.synthetic.main.counter_fragment.*
@@ -88,7 +91,35 @@ class CounterFragment : Fragment() {
         plus_button.setOnTouchListener { _, event ->
             handleTouchEvent(event, incrementation)
         }
+
+        subtract_button.setOnClickListener {
+            sendInputDialog(it, "Subtract") { d -> -d }
+        }
+        append_button.setOnClickListener {
+            sendInputDialog(it, "Append") { d -> d }
+        }
     }
+
+    private fun sendInputDialog(it: View, action: String, doubleConverter: (Double) -> Double) {
+        val context: Context = it.context
+
+        val input = EditText(context)
+        input.inputType = 8194
+
+        AlertDialog.Builder(context)
+            .setTitle(action)
+            .setView(input)
+            .setPositiveButton(action) { _, _ -> positiveClickCallback(input, doubleConverter) }
+            .setNegativeButton("Cancel") { dialog, _ -> negativeClickCallback(dialog) }
+            .show()
+    }
+
+    private fun positiveClickCallback(input: EditText, doubleConverter: (Double) -> Double) {
+        val text: Double = input.text.toString().toDoubleOrNull() ?: return
+        vm.incrementDouble(doubleConverter(text))
+    }
+
+    private fun negativeClickCallback(dialog: DialogInterface) = dialog.cancel()
 
     private fun initializeViewModel(): CounterViewModel
         = CounterViewModel(database.nutrtionDao())

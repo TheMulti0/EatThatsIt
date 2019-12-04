@@ -13,7 +13,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <fragment
         android:id="@+id/carbs_counter_fragment"
@@ -25,5 +26,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calories_counter_fragment" />
+
+    <fragment
+        android:id="@+id/protein_counter_fragment"
+        android:name="themulti0.eatthatsit.ui.counter.CounterFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:counter_name="Protein"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carbs_counter_fragment" />
+
+    <fragment
+        android:id="@+id/fats_counter_fragment"
+        android:name="themulti0.eatthatsit.ui.counter.CounterFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:counter_name="Fats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/protein_counter_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

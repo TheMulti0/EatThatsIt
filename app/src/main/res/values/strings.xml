@@ -46,6 +46,8 @@
     </string-array>
 
 
-    <string name="numbercounter_minus">Minus button</string>
-    <string name="numbercounter_plus">Plus button</string>
+    <string name="numbercounter_minus">Decrement the counter</string>
+    <string name="numbercounter_subtract">Decrement the counter with a custom value</string>
+    <string name="numbercounter_plus">Increment the counter</string>
+    <string name="numbercounter_append">Increment the counter with a custom value</string>
 </resources>
