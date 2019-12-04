@@ -3,67 +3,66 @@ package themulti0.eatthatsit.ui.numberCounter
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
-import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledExecutorService
+import themulti0.eatthatsit.database.NutritionDao
+import themulti0.eatthatsit.database.NutritionEntity
 import java.util.concurrent.TimeUnit
 
-class CounterViewModel : BaseObservable() {
+class CounterViewModel(private val nutritionDao: NutritionDao) : BaseObservable() {
 
-    private val defaultTime: Long = 250L
-    private val incrementationIntervalMilli: Int = 40
-    private val minIncrementationIntervalMilli: Int = 75
+    private val invoker: AcceleratedInvoker = AcceleratedInvoker(
+        TimeUnit.MILLISECONDS,
+        this::incrementDouble,
+        250,
+        30,
+        75)
 
-    private lateinit var scheduler: ScheduledExecutorService
-    private var time: Long = defaultTime
+    private lateinit var nutritionEntity: NutritionEntity
 
-    val buttonIncrementation: Double = 1.0
     var counterName: String? = null
 
-    @get:Bindable
     var counter: String = "0"
+        @Bindable
+        get
         set(value) {
             if (field != value) {
                 field = value
             }
-            notifyPropertyChanged(BR.counter)
+            notifyPropertyChanged(BR.counter) // binding field id = 2
+
+            updateDatabase()
         }
 
-
-
-    fun beginIncrementation(incrementation: Double) {
-        scheduler = Executors.newSingleThreadScheduledExecutor()
-        time = defaultTime
-
-        scheduleIncrementation(incrementation)
-    }
-
-    fun endIncrementation() {
-        scheduler.shutdownNow()
-    }
-
-    fun poop(incrementation: Double) {
-        incrementDouble(incrementation)
-
-        if (time > minIncrementationIntervalMilli) {
-            time -= incrementationIntervalMilli
+    private fun updateDatabase() {
+        try {
+            val result: NutritionEntity? = nutritionDao.findById(nutritionEntity.id)
+            if (result != null) {
+                result.value = counter.toDoubleOrNull()
+                nutritionEntity = result
+                nutritionDao.update(result)
+            }
+        } catch (e: Exception) {
+            val idLessEntity = NutritionEntity(0, counterName, counter.toDoubleOrNull())
+            val id: Long = nutritionDao.insert(idLessEntity)
+            nutritionEntity = NutritionEntity(id, counterName, counter.toDoubleOrNull())
         }
-
-        scheduleIncrementation(incrementation)
     }
 
-    private fun scheduleIncrementation(incrementation: Double) {
-        scheduler.schedule({ poop(incrementation) }, time, TimeUnit.MILLISECONDS)
+    fun startIncrementation(incrementation: Double) {
+        invoker.start(incrementation)
     }
 
-    private fun incrementDouble(incrementation: Double) {
-        var value: Double? = counter.toDoubleOrNull()
-        if (value != null) {
-            value += incrementation
+    fun stopIncrementation() {
+        invoker.stop()
+    }
 
-            val stringValue = value.toString()
-            counter =
-                if (value % 1 == 0.0) stringValue.dropLast(2) // Remove .0
-                else stringValue
-        }
+    fun incrementDouble(argument: Any?) {
+        var value: Double = counter.toDoubleOrNull() ?: return
+        val incrementation: Double = argument as? Double ?: return
+        value += incrementation
+
+        val stringValue = value.toString()
+        counter =
+            if (value % 1 == 0.0) stringValue.dropLast(2) // Remove .0
+            else stringValue
     }
 }
