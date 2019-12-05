@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_gallery">
+    app:startDestination="@+id/nav_person">
+
+    <fragment
+        android:id="@+id/nav_person"
+        android:name="themulti0.eatthatsit.ui.person.PersonFragment"
+        android:label="@string/menu_person"
+        tools:layout="@layout/person_fragment" />
 
     <fragment
         android:id="@+id/nav_benedict"

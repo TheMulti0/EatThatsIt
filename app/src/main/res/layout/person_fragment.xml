@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="themulti0.eatthatsit.services.benedictformula.models.Gender" />
+
+        <variable
+            name="vm"
+            type="themulti0.eatthatsit.ui.person.PersonViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarStyle="outsideInset">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/label_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/person_fragment_headline_labels_right_margin"
+                android:layout_marginBottom="@dimen/person_fragment_labels_bottom_margin"
+                android:text="@string/benedict_gender"
+                app:layout_constraintBottom_toBottomOf="@+id/gender_radios"
+                app:layout_constraintEnd_toStartOf="@+id/gender_radios" />
+
+            <RadioGroup
+                android:id="@+id/gender_radios"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/person_fragment_inputs_left_margin"
+                android:layout_marginTop="43dp"
+                android:layout_marginEnd="@dimen/person_fragment_inputs_right_margin"
+                android:checkedButton="@id/male_radio"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RadioButton
+                    android:id="@+id/male_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male" />
+
+                <RadioButton
+                    android:id="@+id/female_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/label_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/person_fragment_headline_labels_right_margin"
+                android:layout_marginBottom="@dimen/person_fragment_labels_bottom_margin"
+                android:text="@string/benedict_weight"
+                app:layout_constraintBottom_toBottomOf="@+id/input_weight"
+                app:layout_constraintEnd_toStartOf="@+id/input_weight" />
+
+            <TextView
+                android:id="@+id/label_kg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="@dimen/person_fragment_labels_bottom_margin"
+                android:text="@string/benedict_weight_volume"
+                app:layout_constraintBottom_toBottomOf="@+id/input_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/input_weight" />
+
+            <EditText
+                android:id="@+id/input_weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/person_fragment_inputs_left_margin"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="@dimen/person_fragment_inputs_right_margin"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gender_radios" />
+
+            <TextView
+                android:id="@+id/label_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/person_fragment_headline_labels_right_margin"
+                android:layout_marginBottom="@dimen/person_fragment_labels_bottom_margin"
+                android:text="@string/benedict_height"
+                app:layout_constraintBottom_toBottomOf="@+id/input_height"
+                app:layout_constraintEnd_toStartOf="@+id/input_height" />
+
+            <TextView
+                android:id="@+id/label_cm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="@dimen/person_fragment_labels_bottom_margin"
+                android:text="@string/benedict_height_volume"
+                app:layout_constraintBottom_toBottomOf="@+id/input_height"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/input_height" />
+
+            <EditText
+                android:id="@+id/input_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/person_fragment_inputs_left_margin"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="@dimen/person_fragment_inputs_right_margin"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_weight" />
+
+            <TextView
+                android:id="@+id/label_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/person_fragment_headline_labels_right_margin"
+                android:layout_marginBottom="@dimen/person_fragment_labels_bottom_margin"
+                android:text="@string/benedict_age"
+                app:layout_constraintBottom_toBottomOf="@+id/input_age"
+                app:layout_constraintEnd_toStartOf="@+id/input_age" />
+
+            <TextView
+                android:id="@+id/label_years"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="@dimen/person_fragment_labels_bottom_margin"
+                android:text="@string/benedict_age_volume"
+                app:layout_constraintBottom_toBottomOf="@+id/input_age"
+                app:layout_constraintStart_toEndOf="@+id/input_age" />
+
+            <EditText
+                android:id="@+id/input_age"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/person_fragment_inputs_left_margin"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="@dimen/person_fragment_inputs_right_margin"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_height" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

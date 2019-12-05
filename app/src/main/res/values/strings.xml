@@ -9,6 +9,7 @@
 
     <!-- Navigation Entries -->
 
+    <string name="menu_person">Person</string>
     <string name="menu_benedict">Benedict</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_settings">Settings</string>
@@ -45,6 +46,7 @@
         <item>Equation revised by Dr. Miffin and St.Jeor in 1990</item>
     </string-array>
 
+    <!-- Counter Fragment -->
 
     <string name="numbercounter_minus">Decrement the counter</string>
     <string name="numbercounter_subtract">Decrement the counter with a custom value</string>
