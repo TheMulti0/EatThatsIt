@@ -1,3 +1,5 @@
 package themulti0.eatthatsit.services.benedictformula.models
 
-class Weight(val amount: Double, val volume: WeightVolume)
+data class Weight(
+    var amount: Double,
+    val volume: WeightVolume)

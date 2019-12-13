@@ -11,16 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.room.Room
 import kotlinx.android.synthetic.main.counter_fragment.*
 import themulti0.eatthatsit.R
-import themulti0.eatthatsit.database.AppDatabase
 import themulti0.eatthatsit.databinding.CounterFragmentBinding
 
 
 class CounterFragment : Fragment() {
 
-    private lateinit var database: AppDatabase
     private lateinit var counterName: String
     private lateinit var vm: CounterViewModel
 
@@ -47,18 +44,6 @@ class CounterFragment : Fragment() {
             counterName = readCounterNameAttribute(context, attrs)
         }
         catch (e: Exception) { }
-
-        database = getDatabase(context)
-
-    }
-
-    private fun getDatabase(context: Context): AppDatabase {
-        val databaseClass: Class<AppDatabase> = AppDatabase::class.java
-        return Room
-            .databaseBuilder(context, databaseClass, "eatthatsit.db")
-            .fallbackToDestructiveMigration() // Automatically remove older database schemas when version changes
-            .allowMainThreadQueries()
-            .build()
     }
 
     private fun readCounterNameAttribute(context: Context, attrs: AttributeSet): String {
@@ -74,11 +59,15 @@ class CounterFragment : Fragment() {
         return counterName
     }
 
-    override fun onViewCreated(view: View, savedInstanceBundle: Bundle?): Unit {
+    override fun onViewCreated(view: View, savedInstanceBundle: Bundle?) {
         super.onViewCreated(view, savedInstanceBundle)
 
-        vm = initializeViewModel()
-        vm.counterName = counterName
+        vm = CounterViewModel(
+            CounterDatabase(
+                context!!.getSharedPreferences(
+                    counterName,
+                    Context.MODE_PRIVATE)),
+            counterName)
 
         val binding = CounterFragmentBinding.bind(view)
         binding.lifecycleOwner = this
@@ -120,9 +109,6 @@ class CounterFragment : Fragment() {
     }
 
     private fun negativeClickCallback(dialog: DialogInterface) = dialog.cancel()
-
-    private fun initializeViewModel(): CounterViewModel
-        = CounterViewModel(database.nutrtionDao())
 
     private fun handleTouchEvent(event: MotionEvent, incrementation: Double): Boolean {
         when (event.action) {

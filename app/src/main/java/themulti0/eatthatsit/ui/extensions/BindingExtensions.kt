@@ -2,8 +2,8 @@ package themulti0.eatthatsit.ui.extensions
 
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 
 fun <T : Any> Spinner.bindToAdapter(
@@ -18,7 +18,7 @@ fun <T : Any> Spinner.bindToAdapter(
     }
 }
 
-fun EditText.bindToViewModel(propertySetter: (String) -> Unit): Unit {
+fun TextView.bindToViewModel(propertySetter: (String) -> Unit) {
     this.doAfterTextChanged { text ->
         try {
             propertySetter(text.toString())

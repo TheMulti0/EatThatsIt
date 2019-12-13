@@ -1,3 +1,5 @@
 package themulti0.eatthatsit.services.benedictformula.models
 
-class Length(val amount: Double, val volume: LengthVolume)
+data class Length(
+    var amount: Double,
+    val volume: LengthVolume)

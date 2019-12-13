@@ -101,7 +101,7 @@ class BenedictFormulaTest {
             pal
         ).roundToInt().floorFirstDigit()
         assertTrue(
-            "Calculated calorie amount for ${formula.javaClass.canonicalName}, $message is wrong!",
+            "Calculated calorie hamount for ${formula.javaClass.canonicalName}, $message is wrong!",
             expectedCalories.floorFirstDigit() == calories.floorFirstDigit()
         )
     }
