@@ -4,8 +4,8 @@ import android.content.SharedPreferences
 
 class CounterDatabase(private val preferences: SharedPreferences) {
     var counter: String
-        get() = preferences.getString("counter", "0")!!
+        get() = preferences.getString("person", "0")!!
         set(value: String) {
-            preferences.edit().putString("counter", value).apply()
+            preferences.edit().putString("person", value).apply()
         }
 }
