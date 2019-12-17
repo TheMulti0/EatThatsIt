@@ -155,6 +155,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/input_height" />
 
+            <Button
+                android:id="@+id/calculate_button"
+                android:text="@string/person_calculate_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/person_fragment_inputs_left_margin"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="@dimen/person_fragment_inputs_right_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_age"
+                tools:layout_editor_absoluteX="162dp"
+                tools:layout_editor_absoluteY="205dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

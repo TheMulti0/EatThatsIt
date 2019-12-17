@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.counter_fragment.*
 import themulti0.eatthatsit.R
@@ -72,6 +73,12 @@ class CounterFragment : Fragment() {
         val binding = CounterFragmentBinding.bind(view)
         binding.lifecycleOwner = this
         binding.vm = vm
+
+        counter.doAfterTextChanged {
+            if (it.isNullOrEmpty()) {
+                vm.counter = "0"
+            }
+        }
 
         val incrementation = 1.0
         minus_button.setOnTouchListener { _, event ->

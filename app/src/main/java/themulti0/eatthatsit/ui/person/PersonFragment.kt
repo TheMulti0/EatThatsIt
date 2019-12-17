@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.person_fragment.*
 import themulti0.eatthatsit.R
-import themulti0.eatthatsit.databinding.PersonFragmentBinding
 import themulti0.eatthatsit.services.benedictformula.models.Gender
 import themulti0.eatthatsit.services.benedictformula.models.Length
 import themulti0.eatthatsit.services.benedictformula.models.Weight
@@ -33,9 +34,6 @@ class PersonFragment : Fragment() {
                 Context.MODE_PRIVATE
             )
         )
-
-        val binding = PersonFragmentBinding.bind(view)
-        binding.lifecycleOwner = this
 
         val genderId =
             if (db.gender == Gender.Male)
@@ -65,6 +63,12 @@ class PersonFragment : Fragment() {
         }
         input_age.bindToViewModel {
             db.age = it.toDoubleOrNull() ?: return@bindToViewModel
+        }
+        calculate_button.setOnClickListener {
+            it.findNavController().navigate(
+                R.id.action_calculate_benedict,
+                bundleOf("person" to db.person)
+            )
         }
     }
 }

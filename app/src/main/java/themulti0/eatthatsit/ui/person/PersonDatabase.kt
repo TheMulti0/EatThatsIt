@@ -15,15 +15,7 @@ class PersonDatabase(private val preferences: SharedPreferences) {
     private val lengthVolumeKey = "isMetric"
     private val ageKey = "age"
 
-    private val emptyPerson: Person =
-        Person(
-            Gender.Male,
-            Weight(defaultDouble, WeightVolume.Kilogram),
-            Length(defaultDouble, LengthVolume.Centimeter),
-            defaultDouble
-        )
-
-    var person: Person = emptyPerson
+    var person: Person = Person.EMPTY
         get() =
             Person(gender, weight, height, age)
         set(value: Person) {

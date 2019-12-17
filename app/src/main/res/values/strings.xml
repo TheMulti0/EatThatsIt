@@ -22,6 +22,7 @@
     <string name="person_height_volume">cm</string>
     <string name="person_age">Age</string>
     <string name="person_age_volume">years</string>
+    <string name="person_calculate_button">Calculate</string>
 
     <!-- Benedict Fragment -->
 

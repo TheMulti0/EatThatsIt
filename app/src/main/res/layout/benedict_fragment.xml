@@ -1,246 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="vm"
-            type="themulti0.eatthatsit.ui.benedict.BenedictViewModel" />
-    </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbarStyle="outsideInset">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+<!--            <android.support.v7.widget.CardView-->
+<!--                xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--                android:id="@+id/sadsaasddsa"-->
+<!--                android:layout_width="200dp"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                card_view:cardCornerRadius="4dp">-->
 
-            <TextView
-                android:id="@+id/textGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
-                android:layout_marginTop="43dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/person_gender"
-                app:layout_constraintEnd_toStartOf="@+id/gender_spinner"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--                <TextView-->
+<!--                    android:id="@+id/info_text"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="dsa"/>-->
+<!--            </android.support.v7.widget.CardView>-->
 
-            <Spinner
-                android:id="@+id/gender_spinner"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="102dp"
-                android:layout_marginTop="43dp"
-                android:layout_marginEnd="50dp"
-                android:spinnerMode="dialog"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textWeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/person_weight"
-                app:layout_constraintEnd_toStartOf="@+id/inputWeight"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gender_spinner" />
-
-            <TextView
-                android:id="@+id/textKg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="18dp"
-                android:text="@string/person_weight_volume"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/inputWeight"
-                app:layout_constraintTop_toBottomOf="@+id/gender_spinner" />
-
-            <EditText
-                android:id="@+id/inputWeight"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="102dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="50dp"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gender_spinner" />
-
-            <TextView
-                android:id="@+id/textHeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/person_height"
-                app:layout_constraintEnd_toStartOf="@+id/inputHeight"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputWeight" />
-
-            <TextView
-                android:id="@+id/textCm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="18dp"
-                android:text="@string/person_height_volume"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/inputHeight"
-                app:layout_constraintTop_toBottomOf="@+id/inputWeight" />
-
-            <EditText
-                android:id="@+id/inputHeight"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="102dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="50dp"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputWeight" />
-
-            <TextView
-                android:id="@+id/textAge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/person_age"
-                app:layout_constraintEnd_toStartOf="@+id/inputAge"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputHeight" />
-
-            <TextView
-                android:id="@+id/textYears"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="18dp"
-                android:text="@string/person_age_volume"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/inputAge"
-                app:layout_constraintTop_toBottomOf="@+id/inputHeight" />
-
-            <EditText
-                android:id="@+id/inputAge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="102dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="50dp"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputHeight" />
-
-            <TextView
-                android:id="@+id/textPal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/benedict_pal"
-                app:layout_constraintEnd_toStartOf="@+id/inputPal"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputAge" />
-
-            <EditText
-                android:id="@+id/inputPal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="102dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="50dp"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputAge" />
-
-            <TextView
-                android:id="@+id/textSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/benedict_spinner_text"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/formula_spinner"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputPal" />
-
-            <Spinner
-                android:id="@+id/formula_spinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="102dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="50dp"
-                android:spinnerMode="dialog"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputPal" />
-
-            <TextView
-                android:id="@+id/viewResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="56dp"
-                android:layout_marginTop="49dp"
-                android:layout_marginEnd="142dp"
-                android:text="@{vm.result}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.284"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculateButton" />
-
-            <Button
-                android:id="@+id/calculateButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="106dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="96dp"
-                android:text="Calculate"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/formula_spinner" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 </layout>

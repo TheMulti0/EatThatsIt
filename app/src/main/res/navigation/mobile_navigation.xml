@@ -9,13 +9,21 @@
         android:id="@+id/nav_person"
         android:name="themulti0.eatthatsit.ui.person.PersonFragment"
         android:label="@string/menu_person"
-        tools:layout="@layout/person_fragment" />
+        tools:layout="@layout/person_fragment" >
+        <action
+            android:id="@+id/action_calculate_benedict"
+            app:destination="@id/nav_benedict" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_benedict"
         android:name="themulti0.eatthatsit.ui.benedict.BenedictFragment"
         android:label="@string/menu_benedict"
-        tools:layout="@layout/benedict_fragment" />
+        tools:layout="@layout/benedict_fragment" >
+        <argument
+            android:name="person"
+            app:argType="themulti0.eatthatsit.services.benedictformula.models.Person" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_nutrition"
