@@ -11,26 +11,22 @@
 
     <string name="menu_person">Person</string>
     <string name="menu_benedict">Benedict</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_nutrition">Nutrition</string>
 
+    <!-- Person Fragment -->
+
+    <string name="person_gender">Gender</string>
+    <string name="person_weight">Weight</string>
+    <string name="person_weight_volume">kg</string>
+    <string name="person_height">Height</string>
+    <string name="person_height_volume">cm</string>
+    <string name="person_age">Age</string>
+    <string name="person_age_volume">years</string>
 
     <!-- Benedict Fragment -->
 
-    <string name="benedict_gender">Gender</string>
-    <string name="benedict_weight">Weight</string>
-    <string name="benedict_weight_volume">kg</string>
-    <string name="benedict_height">Height</string>
-    <string name="benedict_height_volume">cm</string>
-    <string name="benedict_age">Age</string>
-    <string name="benedict_age_volume">years</string>
     <string name="benedict_pal">PAL</string>
     <string name="benedict_spinner_text">Formula</string>
-
-    <string-array name="benedict_gender_array">
-        <item>Male</item>
-        <item>Female</item>
-    </string-array>
 
     <string-array name="short_benedict_formula_array">
         <item>Average of all</item>
@@ -48,8 +44,8 @@
 
     <!-- Counter Fragment -->
 
-    <string name="numbercounter_minus">Decrement the counter</string>
-    <string name="numbercounter_subtract">Decrement the counter with a custom value</string>
-    <string name="numbercounter_plus">Increment the counter</string>
-    <string name="numbercounter_append">Increment the counter with a custom value</string>
+    <string name="counter_minus">Decrement the counter</string>
+    <string name="counter_subtract">Decrement the counter with a custom value</string>
+    <string name="counter_plus">Increment the counter</string>
+    <string name="counter_append">Increment the counter with a custom value</string>
 </resources>

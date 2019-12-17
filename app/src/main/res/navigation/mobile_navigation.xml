@@ -18,15 +18,9 @@
         tools:layout="@layout/benedict_fragment" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="themulti0.eatthatsit.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/gallery_fragment" />
-
-    <fragment
-        android:id="@+id/nav_settings"
-        android:name="themulti0.eatthatsit.ui.settings.SettingsFragment"
-        android:label="@string/menu_settings"
-        tools:layout="@layout/settings_fragment" />
+        android:id="@+id/nav_nutrition"
+        android:name="themulti0.eatthatsit.ui.nutrition.NutritionFragment"
+        android:label="@string/menu_nutrition"
+        tools:layout="@layout/nutrition_fragment" />
 
 </navigation>

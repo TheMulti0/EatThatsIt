@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.benedict_fragment.*
@@ -47,14 +46,14 @@ class BenedictFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSel
         calculateButton?.setOnClickListener(this)
 
         val context = view.context
-        gender_spinner?.bindToAdapter(
-            this,
-            ArrayAdapter.createFromResource(
-                context,
-                R.array.benedict_gender_array,
-                android.R.layout.select_dialog_item
-            )
-        )
+//        gender_spinner?.bindToAdapter(
+//            this,
+//            ArrayAdapter.createFromResource(
+//                context,
+//                R.array.benedict_gender_array,
+//                android.R.layout.select_dialog_item
+//            )
+//        )
 
         formula_spinner?.bindToAdapter(
             this,

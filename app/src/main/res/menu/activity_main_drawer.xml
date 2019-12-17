@@ -3,25 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group
-        android:id="@+id/group_main"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_person"
-            android:title="@string/menu_person" />
-        <item
-            android:id="@+id/nav_benedict"
-            android:title="@string/menu_benedict" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:title="@string/menu_gallery" />
-    </group>
-    <group
-        android:id="@+id/group_secondary"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_settings"
-            android:title="@string/menu_settings" />
-    </group>
+    <item
+        android:id="@+id/nav_person"
+        android:title="@string/menu_person" />
+    <item
+        android:id="@+id/nav_benedict"
+        android:title="@string/menu_benedict" />
+    <item
+        android:id="@+id/nav_nutrition"
+        android:title="@string/menu_nutrition" />
 
 </menu>
