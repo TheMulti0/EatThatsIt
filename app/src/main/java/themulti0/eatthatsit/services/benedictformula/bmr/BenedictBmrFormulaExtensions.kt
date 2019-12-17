@@ -13,7 +13,7 @@ fun IBenedictBmrFormula.calculateBmr(
 
     (weightMultiplier * weightAccessor(person)) +
             (heightMultiplier * heightAccessor(person)) -
-            (ageMultiplier * person.ageInYears)
+            (ageMultiplier * person.age)
 
 fun IBenedictBmrFormula.anyWeightAccessor(person: Person): Double = person.weight.amount
 
