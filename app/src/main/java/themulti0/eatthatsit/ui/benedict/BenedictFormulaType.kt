@@ -1,12 +1,15 @@
 package themulti0.eatthatsit.ui.benedict
 
-enum class BenedictFormulaType(val value: Int) {
-    Average(0),
-    HarrisBenedict(1),
-    RozaShizgal(2),
-    MiffinStJeor(3);
+enum class BenedictFormulaType(
+    val index: Int,
+    val formulaName: String
+) {
+    Average(0, "Average"),
+    HarrisBenedict(1, "Harris - Benedict"),
+    RozaShizgal(2, "Roza - Shizgal"),
+    MiffinStJeor(3, "Miffin - St.Jeor");
 
     companion object {
-        fun fromInt(value: Int) = values().first { it.value == value }
+        fun fromInt(value: Int) = values().first { it.index == value }
     }
 }

@@ -28,47 +28,51 @@ class PersonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceBundle: Bundle?): Unit {
         super.onViewCreated(view, savedInstanceBundle)
 
-        val db = PersonDatabase(
-            context!!.getSharedPreferences(
-                "Person",
-                Context.MODE_PRIVATE
+        val vm = PersonViewModel(
+            PersonDatabase(
+                context!!.getSharedPreferences(
+                    "Person",
+                    Context.MODE_PRIVATE
+                )
             )
         )
 
         val genderId =
-            if (db.gender == Gender.Male)
+            if (vm.gender == Gender.Male)
                 male_radio.id
             else
                 female_radio.id
         gender_radios.check(genderId)
-        input_weight.setText(db.weight.amount.toString())
-        input_height.setText(db.height.amount.toString())
-        input_age.setText(db.age.toString())
+        input_weight.setText(vm.weight.amount.toString())
+        input_height.setText(vm.height.amount.toString())
+        input_age.setText(vm.age.toString())
 
         male_radio.setOnClickListener {
-            db.gender = Gender.Male
+            vm.gender = Gender.Male
         }
 
         female_radio.setOnClickListener {
-            db.gender = Gender.Female
+            vm.gender = Gender.Female
         }
 
         input_weight.bindToViewModel {
             val amount: Double = it.toDoubleOrNull() ?: return@bindToViewModel
-            db.weight = Weight(amount, db.weight.volume)
+            vm.weight = Weight(amount, vm.weight.volume)
         }
         input_height.bindToViewModel {
             val amount = it.toDoubleOrNull() ?: return@bindToViewModel
-            db.height = Length(amount, db.height.volume)
+            vm.height = Length(amount, vm.height.volume)
         }
         input_age.bindToViewModel {
-            db.age = it.toDoubleOrNull() ?: return@bindToViewModel
+            vm.age = it.toDoubleOrNull() ?: return@bindToViewModel
         }
         calculate_button.setOnClickListener {
+            vm.save()
             it.findNavController().navigate(
                 R.id.action_calculate_benedict,
-                bundleOf("person" to db.person)
+                bundleOf("person" to vm.person)
             )
         }
+
     }
 }

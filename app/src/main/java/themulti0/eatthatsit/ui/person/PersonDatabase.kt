@@ -15,25 +15,6 @@ class PersonDatabase(private val preferences: SharedPreferences) {
     private val lengthVolumeKey = "isMetric"
     private val ageKey = "age"
 
-    var person: Person = Person.EMPTY
-        get() =
-            Person(gender, weight, height, age)
-        set(value: Person) {
-            field = value
-            if (field.gender != value.gender) {
-                gender = value.gender
-            }
-            if (field.weight != value.weight) {
-                weight = value.weight
-            }
-            if (field.height != value.height) {
-                height = value.height
-            }
-            if (field.age != value.age) {
-                age = value.age
-            }
-        }
-
     var gender: Gender
         get() = Gender.fromInt(preferences.getInt(genderKey, defaultInt))
         set(value: Gender) {

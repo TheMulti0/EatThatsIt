@@ -1,4 +1,4 @@
-package themulti0.eatthatsit.ui.benedict
+package themulti0.eatthatsit.ui.formula
 
 import android.os.Bundle
 import android.view.View
@@ -9,12 +9,13 @@ import themulti0.eatthatsit.services.benedictformula.bmr.HarrisBenedictFormula
 import themulti0.eatthatsit.services.benedictformula.models.Person
 import themulti0.eatthatsit.ui.XmlFragment
 
-class BenedictFragment : XmlFragment(R.layout.benedict_fragment) {
+class FormulaFragment : XmlFragment(R.layout.formula_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceBundle: Bundle?): Unit {
         super.onViewCreated(view, savedInstanceBundle)
 
-        val vm = BenedictViewModel()
+        arguments.
+        val vm = FormulaViewModel()
         val binding = BenedictFragmentBinding.bind(view)
         binding.lifecycleOwner = this
         binding.vm = vm
