@@ -2,6 +2,7 @@ package themulti0.eatthatsit.ui.person
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Xml
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +14,10 @@ import themulti0.eatthatsit.R
 import themulti0.eatthatsit.services.benedictformula.models.Gender
 import themulti0.eatthatsit.services.benedictformula.models.Length
 import themulti0.eatthatsit.services.benedictformula.models.Weight
+import themulti0.eatthatsit.ui.XmlFragment
 import themulti0.eatthatsit.ui.extensions.bindToViewModel
 
-class PersonFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.person_fragment, container, false)
-    }
+class PersonFragment : XmlFragment(R.layout.person_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceBundle: Bundle?): Unit {
         super.onViewCreated(view, savedInstanceBundle)

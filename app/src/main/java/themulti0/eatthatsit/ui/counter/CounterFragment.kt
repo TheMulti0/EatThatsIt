@@ -5,34 +5,20 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.counter_fragment.*
 import themulti0.eatthatsit.R
 import themulti0.eatthatsit.databinding.CounterFragmentBinding
+import themulti0.eatthatsit.ui.XmlFragment
 
 
-class CounterFragment : Fragment() {
+class CounterFragment : XmlFragment(R.layout.counter_fragment) {
 
     private lateinit var counterName: String
     private lateinit var vm: CounterViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(
-            R.layout.counter_fragment,
-            container,
-            false
-        )
-    }
 
     override fun onInflate(
         context: Context,
