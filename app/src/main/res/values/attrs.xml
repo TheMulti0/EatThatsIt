@@ -3,7 +3,4 @@
     <declare-styleable name="CounterFragment">
         <attr name="counter_name" format="string" />
     </declare-styleable>
-    <declare-styleable name="FormulaFragment">
-        <attr name="formula_name" format="string" />
-    </declare-styleable>
 </resources>

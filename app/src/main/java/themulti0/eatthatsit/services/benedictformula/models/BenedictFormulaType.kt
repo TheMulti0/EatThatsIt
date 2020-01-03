@@ -1,4 +1,4 @@
-package themulti0.eatthatsit.ui.benedict
+package themulti0.eatthatsit.services.benedictformula.models
 
 enum class BenedictFormulaType(
     val index: Int,

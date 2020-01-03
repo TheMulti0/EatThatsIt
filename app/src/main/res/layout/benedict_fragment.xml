@@ -11,21 +11,9 @@
             type="themulti0.eatthatsit.ui.benedict.BenedictViewModel" />
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/formulas_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-        <fragment
-            android:id="@+id/benedict_formula_fragment"
-            android:name="themulti0.eatthatsit.ui.f.CounterFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:counter_name="Protein"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carbs_counter_fragment" />
-
-    </LinearLayout>
 </layout>

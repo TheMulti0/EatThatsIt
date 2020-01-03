@@ -1,9 +1,8 @@
 package themulti0.eatthatsit.ui.formula
 
-import androidx.lifecycle.LiveData
-import themulti0.eatthatsit.ui.benedict.BenedictFormulaType
+import androidx.lifecycle.MutableLiveData
 
-class FormulaViewModel(
-    val type: BenedictFormulaType,
-    val result: LiveData<String>
-)
+class FormulaViewModel {
+    val info: MutableLiveData<FormulaInformation> = MutableLiveData()
+    val result: MutableLiveData<Double> = MutableLiveData()
+}
