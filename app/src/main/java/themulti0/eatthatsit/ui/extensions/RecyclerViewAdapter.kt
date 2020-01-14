@@ -4,24 +4,41 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-typealias Holder<TView> = RecyclerViewAdapter.RecyclerViewHolder<TView>
+class RecyclerViewHolder<TView : View>(val view: TView) : RecyclerView.ViewHolder(view)
 
 class RecyclerViewAdapter<TView : View, TData>(
-    private val data: List<TData>,
+    data: MutableList<TData>,
     private val viewFactory: (ViewGroup) -> TView,
-    private val dataSetter: (TView, TData) -> Unit
+    private val dataConsumer: (TView, TData) -> Unit
 ) :
-    RecyclerView.Adapter<Holder<TView>>() {
+    RecyclerView.Adapter<RecyclerViewHolder<TView>>() {
 
-    class RecyclerViewHolder<TView : View>(val view: TView) : RecyclerView.ViewHolder(view)
+    var data: MutableList<TData> = data
+        set(value) {
+            refreshData()
+            field = value
+        }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<TView> =
-        RecyclerViewHolder(viewFactory(parent))
+    private val views: MutableList<RecyclerViewHolder<TView>> = mutableListOf()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder<TView> {
+        val viewHolder = RecyclerViewHolder(viewFactory(parent))
+
+        views.add(viewHolder)
+
+        return viewHolder
+    }
 
     override fun getItemCount(): Int = data.size
 
-    override fun onBindViewHolder(holder: Holder<TView>, position: Int) {
-        dataSetter(holder.view, data[position])
+    override fun onBindViewHolder(holder: RecyclerViewHolder<TView>, position: Int) {
+        dataConsumer(holder.view, data[position])
+    }
+
+    private fun refreshData() {
+        for ((index, holder) in views.withIndex()) {
+            dataConsumer(holder.view, data[index])
+        }
     }
 
 }

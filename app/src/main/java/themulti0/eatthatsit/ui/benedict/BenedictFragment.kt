@@ -1,7 +1,9 @@
 package themulti0.eatthatsit.ui.benedict
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
+import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.benedict_fragment.*
@@ -16,43 +18,66 @@ import themulti0.eatthatsit.ui.formula.FormulaView
 
 class BenedictFragment : XmlFragment(R.layout.benedict_fragment) {
 
-    private val formulaTypes: List<BenedictFormulaType> = listOf(
+    private val formulaTypes: MutableList<BenedictFormulaType> = mutableListOf(
         BenedictFormulaType.Average,
         BenedictFormulaType.HarrisBenedict,
         BenedictFormulaType.MiffinStJeor,
         BenedictFormulaType.RozaShizgal
     )
 
+    private val formulaInfos: MutableList<FormulaInformation>
+        get() =
+            formulaTypes.map { type -> FormulaInformation(type, person, vm.pal) }.toMutableList()
+
+    private val vm = BenedictViewModel()
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapter<FormulaView, FormulaInformation>
+    private lateinit var person: Person
+
     override fun onViewCreated(view: View, savedInstanceBundle: Bundle?): Unit {
         super.onViewCreated(view, savedInstanceBundle)
 
-        val vm = BenedictViewModel()
+        bind(view)
+
+        person = arguments?.get("person") as? Person ?: return
+
+        createFormulas()
+
+        input_pal.doAfterTextChanged(this::palChanged)
+    }
+
+    private fun bind(view: View) {
         val binding = BenedictFragmentBinding.bind(view)
         binding.lifecycleOwner = this
         binding.vm = vm
+    }
 
-        val person: Person = arguments?.get("person") as? Person ?: return
+    private fun createFormulas() {
+        formulas_view.setHasFixedSize(true)
 
-        val infos = formulaTypes.map { type -> FormulaInformation(type, person, 1.7) }
+        val linearLayoutManager = LinearLayoutManager(context)
+        formulas_view.layoutManager = linearLayoutManager
 
-        formulas_view?.apply {
-            setHasFixedSize(true)
+        recyclerViewAdapter = RecyclerViewAdapter(
+            formulaInfos,
+            { parent -> FormulaView(parent.context) },
+            { formulaView, info ->
+                formulaView.vm.info.value = info
+                formulaView.calculate()
+            })
+        formulas_view.adapter = recyclerViewAdapter
 
-            val linearLayoutManager = LinearLayoutManager(context)
-            layoutManager = linearLayoutManager
+        formulas_view.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                linearLayoutManager.orientation
+            )
+        )
+    }
 
-            adapter = RecyclerViewAdapter(
-                infos,
-                { parent -> FormulaView(parent.context) },
-                { view, info ->
-                    view.vm.info.value = info
-                    view.calculate()
-                })
+    private fun palChanged(text: Editable?) {
+        vm.pal = text?.toString()?.toDoubleOrNull() ?: return
 
-            val dividerItemDecoration =
-                DividerItemDecoration(context, linearLayoutManager.orientation)
-            addItemDecoration(dividerItemDecoration)
-        }
+        recyclerViewAdapter.data = formulaInfos
     }
 }
 
