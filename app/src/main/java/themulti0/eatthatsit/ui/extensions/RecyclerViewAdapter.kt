@@ -7,17 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 class RecyclerViewHolder<TView : View>(val view: TView) : RecyclerView.ViewHolder(view)
 
 class RecyclerViewAdapter<TView : View, TData>(
-    data: MutableList<TData>,
+    private var data: MutableList<TData>,
     private val viewFactory: (ViewGroup) -> TView,
     private val dataConsumer: (TView, TData) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerViewHolder<TView>>() {
-
-    var data: MutableList<TData> = data
-        set(value) {
-            refreshData()
-            field = value
-        }
 
     private val views: MutableList<RecyclerViewHolder<TView>> = mutableListOf()
 
@@ -35,10 +29,11 @@ class RecyclerViewAdapter<TView : View, TData>(
         dataConsumer(holder.view, data[position])
     }
 
-    private fun refreshData() {
+    fun refreshData(newData: MutableList<TData>) {
         for ((index, holder) in views.withIndex()) {
-            dataConsumer(holder.view, data[index])
+            dataConsumer(holder.view, newData[index])
         }
+        data = newData
     }
 
 }

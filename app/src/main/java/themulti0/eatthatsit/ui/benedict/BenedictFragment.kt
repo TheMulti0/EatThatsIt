@@ -1,9 +1,8 @@
 package themulti0.eatthatsit.ui.benedict
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.View
-import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.benedict_fragment.*
@@ -42,7 +41,11 @@ class BenedictFragment : XmlFragment(R.layout.benedict_fragment) {
 
         createFormulas()
 
-        input_pal.doAfterTextChanged(this::palChanged)
+        input_pal.doOnTextChanged { text, _, _, _ ->
+            vm.pal = text?.toString()?.toDoubleOrNull() ?: return@doOnTextChanged
+
+            recyclerViewAdapter.refreshData(formulaInfos)
+        }
     }
 
     private fun bind(view: View) {
@@ -61,8 +64,7 @@ class BenedictFragment : XmlFragment(R.layout.benedict_fragment) {
             formulaInfos,
             { parent -> FormulaView(parent.context) },
             { formulaView, info ->
-                formulaView.vm.info.value = info
-                formulaView.calculate()
+                formulaView.calculate(info)
             })
         formulas_view.adapter = recyclerViewAdapter
 
@@ -72,12 +74,6 @@ class BenedictFragment : XmlFragment(R.layout.benedict_fragment) {
                 linearLayoutManager.orientation
             )
         )
-    }
-
-    private fun palChanged(text: Editable?) {
-        vm.pal = text?.toString()?.toDoubleOrNull() ?: return
-
-        recyclerViewAdapter.data = formulaInfos
     }
 }
 
