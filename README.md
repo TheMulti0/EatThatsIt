@@ -2,7 +2,7 @@
 
 This is an unpublished Android app.
 
-The purpose of this app is easily calculating daily intake (using the different versions of the Benedict formula), and easily counting calories, carbs, proteins and fats.
+The purpose of this app is easily calculating daily caloric intake (using the different equations of the [Harris-Benedict](https://en.wikipedia.org/wiki/Harris–Benedict_equation) formula), and easily counting calories, carbs, proteins and fats.
 
 ### Screenshots
 ![](https://i.imgur.com/l7HNVFs.jpg)
