@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="vm"
+            type="themulti0.eatthatsit.ui.person.PersonViewModel" />
+
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,13 +48,15 @@
                     android:id="@+id/male_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Male" />
+                    android:text="Male"
+                    android:checked="@={vm.male}" />
 
                 <RadioButton
                     android:id="@+id/female_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Female" />
+                    android:text="Female"
+                    android:checked="@{vm.female}" />
 
             </RadioGroup>
 
@@ -81,6 +91,7 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="@dimen/person_fragment_inputs_right_margin"
                 android:ems="10"
+                android:text="@={`` + vm.weightAmount}"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,6 +128,7 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="@dimen/person_fragment_inputs_right_margin"
                 android:ems="10"
+                android:text="@={`` + vm.heightLength}"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -150,6 +162,7 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="@dimen/person_fragment_inputs_right_margin"
                 android:ems="10"
+                android:text="@={`` + vm.age}"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -33,6 +33,7 @@
             android:layout_marginStart="6dp"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:text="@={`` + vm.pal}"
             android:inputType="numberDecimal"
             app:layout_constraintStart_toEndOf="@+id/label_pal"
             app:layout_constraintTop_toTopOf="parent" />

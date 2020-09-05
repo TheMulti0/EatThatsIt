@@ -28,30 +28,22 @@ class BenedictFragment : XmlFragment(R.layout.benedict_fragment) {
         get() =
             formulaTypes.map { type -> FormulaInformation(type, person, vm.pal) }.toMutableList()
 
-    private val vm = BenedictViewModel()
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter<FormulaView, FormulaInformation>
+    private lateinit var vm: BenedictViewModel
     private lateinit var person: Person
 
     override fun onViewCreated(view: View, savedInstanceBundle: Bundle?): Unit {
         super.onViewCreated(view, savedInstanceBundle)
 
-        bind(view)
+        vm = BenedictViewModel { recyclerViewAdapter.refreshData(formulaInfos) }
+
+        val binding = BenedictFragmentBinding.bind(view)
+        binding.lifecycleOwner = this
+        binding.vm = vm
 
         person = arguments?.get("person") as? Person ?: return
 
         createFormulas()
-
-        input_pal.doOnTextChanged { text, _, _, _ ->
-            vm.pal = text?.toString()?.toDoubleOrNull() ?: return@doOnTextChanged
-
-            recyclerViewAdapter.refreshData(formulaInfos)
-        }
-    }
-
-    private fun bind(view: View) {
-        val binding = BenedictFragmentBinding.bind(view)
-        binding.lifecycleOwner = this
-        binding.vm = vm
     }
 
     private fun createFormulas() {
