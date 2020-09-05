@@ -4,14 +4,13 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import themulti0.eatthatsit.services.benedictformula.models.*
+import themulti0.eatthatsit.ui.extensions.format
 import java.text.DecimalFormat
 import java.text.NumberFormat
 
-fun NumberFormat.formatDouble(value: Double): Double = this.format(value).toDouble()
-
 class PersonViewModel(private val database: PersonDatabase) : BaseObservable() {
 
-    private val format: DecimalFormat = DecimalFormat("##.#")
+    private val decimalPoints = 1
 
     var male: Boolean = this.database.gender == Gender.Male
         @Bindable
@@ -26,36 +25,36 @@ class PersonViewModel(private val database: PersonDatabase) : BaseObservable() {
     private val gender: Gender
         get() = if (male) Gender.Male else Gender.Female
 
-    var weightAmount: Double = format.formatDouble(this.database.weight.amount)
+    var weightAmount: String = format(this.database.weight.amount, decimalPoints)
         @Bindable
         get
         set(value) {
             if (field != value) {
-                field = format.formatDouble(value)
+                field = value
                 notifyPropertyChanged(BR.weightAmount)
             }
         }
     private val weight: Weight
-        get() = Weight(weightAmount, WeightVolume.Kilogram)
+        get() = Weight(format(weightAmount.toDouble(), decimalPoints).toDouble(), WeightVolume.Kilogram)
 
-    var heightLength: Double = format.formatDouble(this.database.height.amount)
+    var heightLength: String = format(this.database.height.amount, decimalPoints)
         @Bindable
         get
         set(value) {
             if (field != value) {
-                field = format.formatDouble(value)
+                field = value
                 notifyPropertyChanged(BR.heightLength)
             }
         }
     private val height: Length
-        get() = Length(heightLength, LengthVolume.Centimeter)
+        get() = Length(format(heightLength.toDouble(), decimalPoints).toDouble(), LengthVolume.Centimeter)
 
-    var age: Double = format.formatDouble(this.database.age)
+    var age: String = format(this.database.age, decimalPoints)
         @Bindable
         get
         set(value) {
             if (field != value) {
-                field = format.formatDouble(value)
+                field = value
                 notifyPropertyChanged(BR.age)
             }
         }
@@ -65,13 +64,13 @@ class PersonViewModel(private val database: PersonDatabase) : BaseObservable() {
             gender,
             weight,
             height,
-            age
+            format(age.toDouble(), decimalPoints).toDouble()
         )
 
-    fun save(): Unit {
+    fun save() {
         database.gender = gender
         database.weight = weight
         database.height = height
-        database.age = age
+        database.age = age.toDouble()
     }
 }

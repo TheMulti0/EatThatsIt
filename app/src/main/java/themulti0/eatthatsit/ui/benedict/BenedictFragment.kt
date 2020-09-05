@@ -26,7 +26,7 @@ class BenedictFragment : XmlFragment(R.layout.benedict_fragment) {
 
     private val formulaInfos: MutableList<FormulaInformation>
         get() =
-            formulaTypes.map { type -> FormulaInformation(type, person, vm.pal) }.toMutableList()
+            formulaTypes.map { type -> FormulaInformation(type, person, vm.pal.toDouble()) }.toMutableList()
 
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter<FormulaView, FormulaInformation>
     private lateinit var vm: BenedictViewModel
